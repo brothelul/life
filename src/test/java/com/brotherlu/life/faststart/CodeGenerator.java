@@ -34,7 +34,7 @@ import java.util.Map;
  */
 public class CodeGenerator {
     //JDBC配置，请修改为你项目的实际配置
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/test";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3307/life";
     private static final String JDBC_USERNAME = "root";
     private static final String JDBC_PASSWORD = "mysql";
     private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
@@ -55,7 +55,7 @@ public class CodeGenerator {
     public static void main(String[] args) {
 //        genCode("user");
 //        genCodeByCustomModelName("user","User");
-    	genCode("solv_task");
+    	//genCode("life_cost","life_cost_clean","life_user_login","life_user_info","life_cost_type","life_group_notice","life_cost_clean","life_user_group");
     }
 
     /**

@@ -51,18 +51,18 @@ public abstract class AbstractService<T> implements Service<T> {
         return mapper.selectByPrimaryKey(id);
     }
 
-//    @Override
-//    public T findBy(String fieldName, Object value) throws TooManyResultsException {
-//        try {
-//            T model = modelClass.newInstance();
-//            Field field = modelClass.getDeclaredField(fieldName);
-//            field.setAccessible(true);
-//            field.set(model, value);
-//            return mapper.selectOne(model);
-//        } catch (ReflectiveOperationException e) {
-//            throw new ServiceException(e.getMessage(), e);
-//        }
-//    }
+    @Override
+    public T findBy(String fieldName, Object value) throws TooManyResultsException {
+        try {
+            T model = modelClass.newInstance();
+            Field field = modelClass.getDeclaredField(fieldName);
+            field.setAccessible(true);
+            field.set(model, value);
+            return mapper.selectOne(model);
+        } catch (ReflectiveOperationException e) {
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
 
     public List<T> findByIds(String ids) {
         return mapper.selectByIds(ids);

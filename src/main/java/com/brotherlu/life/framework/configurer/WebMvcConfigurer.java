@@ -67,12 +67,16 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
                 Result result = new Result();
                 if (e instanceof ServiceException) {//业务失败的异常，如“账号或密码错误”
                     result.setCode(ResultCode.FAIL).setMessage(e.getMessage());
+                    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                     logger.info(e.getMessage());
                 } else if (e instanceof NoHandlerFoundException) {
+                	response.setStatus(HttpServletResponse.SC_NOT_FOUND);
                     result.setCode(ResultCode.NOT_FOUND).setMessage("接口 [" + request.getRequestURI() + "] 不存在");
                 } else if (e instanceof ServletException) {
+                	response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                     result.setCode(ResultCode.FAIL).setMessage(e.getMessage());
                 } else {
+                	response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                     result.setCode(ResultCode.INTERNAL_SERVER_ERROR).setMessage("接口 [" + request.getRequestURI() + "] 内部错误，请联系管理员");
                     String message;
                     if (handler instanceof HandlerMethod) {
@@ -104,7 +108,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //接口签名认证拦截器，该签名认证比较简单，实际项目中可以使用Json Web Token或其他更好的方式替代。
-        if ("dev".equals(env)) { //开发环境忽略签名认证
+        if (!"dev".equals(env)) { //开发环境忽略签名认证
             registry.addInterceptor(new HandlerInterceptorAdapter() {
                 @Override
                 public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -118,6 +122,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 
                         Result result = new Result();
                         result.setCode(ResultCode.UNAUTHORIZED).setMessage("签名认证失败");
+                    	response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                         responseResult(response, result);
                         return false;
                     }
@@ -129,7 +134,6 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
     private void responseResult(HttpServletResponse response, Result result) {
         response.setCharacterEncoding("UTF-8");
         response.setHeader("Content-type", "application/json;charset=UTF-8");
-        response.setStatus(200);
         try {
             response.getWriter().write(JSON.toJSONString(result));
         } catch (IOException ex) {
