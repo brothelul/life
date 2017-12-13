@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brotherlu.life.dao.LifeUserLoginMapper">
+  <resultMap id="BaseResultMap" type="com.brotherlu.life.model.LifeUserLogin">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="user_no" jdbcType="INTEGER" property="userNo" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="login_ip" jdbcType="VARCHAR" property="loginIp" />
+    <result column="login_date" jdbcType="TIMESTAMP" property="loginDate" />
+  </resultMap>
+  
+  <select id="userLogin" parameterType="String" resultType="Integer">
+  	select user_no from life_user_login where login_name = #{arg0} and password = #{arg1}
+  </select>
+</mapper>

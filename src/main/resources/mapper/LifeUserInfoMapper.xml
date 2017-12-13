@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brotherlu.life.dao.LifeUserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.brotherlu.life.model.LifeUserInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="user_no" jdbcType="INTEGER" property="userNo" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="phone" jdbcType="INTEGER" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="entry_date" jdbcType="TIMESTAMP" property="entryDate" />
+    <result column="entry_ip" jdbcType="VARCHAR" property="entryIp" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brotherlu.life.dao.LifeCostTypeMapper">
+  <resultMap id="BaseResultMap" type="com.brotherlu.life.model.LifeCostType">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="type_no" jdbcType="INTEGER" property="typeNo" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="type_desc" jdbcType="VARCHAR" property="typeDesc" />
+    <result column="group_no" jdbcType="INTEGER" property="groupNo" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brotherlu.life.dao.LifeCostMapper">
+  <resultMap id="BaseResultMap" type="com.brotherlu.life.model.LifeCost">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="cost_no" jdbcType="INTEGER" property="costNo" />
+    <result column="user_no" jdbcType="INTEGER" property="userNo" />
+    <result column="cost_type" jdbcType="VARCHAR" property="costType" />
+    <result column="cost_money" jdbcType="REAL" property="costMoney" />
+    <result column="cost_date" jdbcType="TIMESTAMP" property="costDate" />
+    <result column="cost_desc" jdbcType="VARCHAR" property="costDesc" />
+    <result column="entry_id" jdbcType="INTEGER" property="entryId" />
+    <result column="entry_date" jdbcType="TIMESTAMP" property="entryDate" />
+    <result column="update_id" jdbcType="INTEGER" property="updateId" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="delete_id" jdbcType="INTEGER" property="deleteId" />
+    <result column="delete_date" jdbcType="TIMESTAMP" property="deleteDate" />
+  </resultMap>
+  
+  <resultMap type="com.brotherlu.life.model.LifeCostInfo" id="lifeCostInfo">
+  	<result column="cust_no" property="costNo"/>
+  	<result column="user_no" property="userNo"/>
+  	<result column="username" property="username"/>
+  	<result column="phone" property="phone"/>
+  	<result column="cost_money" property="costMoney"/>
+  	<result column="cost_desc" property="costDesc"/>
+  	<result column="cost_date" property="costDate"/>
+  	<result column="cost_type" property="costType"/>
+  	<result column="type_name" property="typeName"/>
+  	<result column="group_no" property="groupNo"/>
+  	<result column="group_name" property="groupName"/>
+  	 <result column="entry_id" property="entryId"/>
+  	<result column="entry_date" property="entryDate"/>
+  </resultMap>
+  
+  <select id="findCostInfo" resultMap="lifeCostInfo" statementType="CALLABLE">
+      <![CDATA[ {call life_query(
+			  #{typeNo,jdbcType=NUMERIC,mode=IN},
+			  #{userNo,jdbcType=NUMERIC,mode=IN},
+			  #{modeType,jdbcType=VARCHAR,mode=IN},
+			  #{startDate,jdbcType=DATE,mode=IN},
+			  #{endDate,jdbcType=DATE,mode=IN},
+			  #{page,jdbcType=NUMERIC,mode=IN},
+			  #{size,jdbcType=NUMERIC,mode=IN}
+			  )}
+	]]>  
+  </select>
+  
+    <resultMap type="com.brotherlu.life.model.LifeTotalCost" id="lifeTotalCost">
+  	<result column="user_no" property="userNo"/>
+  	<result column="username" property="username"/>
+  	<result column="total_cost" property="totalCost"/>
+  	<result column="type_no" property="typeNo"/>
+  	<result column="type_name" property="typeName"/>
+  	<result column="group_no" property="groupNo"/>
+  	<result column="group_name" property="groupName"/>
+  </resultMap>
+  
+    <select id="findUserTotalCost" resultMap="lifeTotalCost" statementType="CALLABLE">
+      <![CDATA[ {call life_query(
+			  #{typeNo,jdbcType=NUMERIC,mode=IN},
+			  #{userNo,jdbcType=NUMERIC,mode=IN},
+			  #{modeType,jdbcType=VARCHAR,mode=IN},
+			  #{startDate,jdbcType=DATE,mode=IN},
+			  #{endDate,jdbcType=DATE,mode=IN},
+			  #{page,jdbcType=NUMERIC,mode=IN},
+			  #{size,jdbcType=NUMERIC,mode=IN}
+			  )}
+	]]>  
+  </select>
+ 
+</mapper>

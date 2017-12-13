@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brotherlu.life.dao.LifeGroupNoticeMapper">
+  <resultMap id="BaseResultMap" type="com.brotherlu.life.model.LifeGroupNotice">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="notice_no" jdbcType="INTEGER" property="noticeNo" />
+    <result column="group_no" jdbcType="INTEGER" property="groupNo" />
+    <result column="notice_name" jdbcType="VARCHAR" property="noticeName" />
+    <result column="active" jdbcType="CHAR" property="active" />
+    <result column="entry_id" jdbcType="INTEGER" property="entryId" />
+    <result column="entry_date" jdbcType="TIMESTAMP" property="entryDate" />
+    <result column="notice_content" jdbcType="LONGVARCHAR" property="noticeContent" />
+  </resultMap>
+</mapper>
