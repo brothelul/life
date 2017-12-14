@@ -55,6 +55,17 @@ public class LifeUserLoginController {
 //        return ResultGenerator.genSuccessResult(pageInfo);
 //    }
     
+    /**
+     * api request:
+     * 
+     * {
+     * 		"username":"123",
+     * 		"password":"102"
+     * }
+     * 
+     * @param requestParams
+     * @return
+     */
     @PostMapping("/login")
     public Result login(@RequestBody Map<String, Object> requestParams) {
     	String username = (String) requestParams.get("username");

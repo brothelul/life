@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,11 +27,49 @@ import com.brotherlu.life.utils.DateFormatUtil;
 @RestController
 @RequestMapping("/life/cost")
 public class LifeCostController {
+	private Logger logger = LoggerFactory.getLogger(LifeCostController.class);
     @Resource
     private LifeCostService lifeCostService;
 
+    /**
+     * api request body:
+     * 
+     * {
+     * 		"user_no":1,
+     * 		"type_no":2,
+     * 		"cost_money":3.3,
+     * 		"cost_date":"2017-12-14 20:12:00",
+     * 		"cost_desc":"买菜"
+     * }
+     * 
+     * @param requestParams
+     * @return
+     * @throws ParseException
+     */
     @PostMapping("/add")
-    public Result add(LifeCost lifeCost) {
+    public Result add(@RequestBody Map<String,Object> requestParams) 
+    		throws ParseException {
+    	
+    	Integer userNo = (Integer) requestParams.get("user_no");
+    	Integer costType = (Integer) requestParams.get("type_no");
+    	Float costMoney = (Float) requestParams.get("cost_money");
+    	String costDateString = (String) requestParams.get("cost_date");
+    	String costDesc = (String) requestParams.get("cost_desc");
+    	
+    	Date date = DateFormatUtil.string2Date(costDateString, CommonConstant.DATE_PATTERN);
+    	if (userNo == null || costType == null || costMoney == null || date == null) {
+    		logger.error(">>>>>>>>>>>>>>some feild were null in cost, userNo: "+userNo+", costType: "+costType+", costMoney: "+costMoney +", date: "+date+">>>>>>>>>>>>>>");
+			return ResultGenerator.genFailResult("创建失败，某个关键字段为空。");
+		}
+    	
+    	LifeCost lifeCost = new LifeCost();
+    	lifeCost.setCostDate(date);
+    	lifeCost.setCostDesc(costDesc);
+    	lifeCost.setUserNo(userNo);
+    	lifeCost.setCostType(costType);
+    	lifeCost.setEntryId(userNo);
+    	lifeCost.setEntryDate(new Date());
+    	
         lifeCostService.save(lifeCost);
         return ResultGenerator.genSuccessResult();
     }
@@ -52,6 +92,23 @@ public class LifeCostController {
 //        return ResultGenerator.genSuccessResult(lifeCost);
 //    }
 
+    /**
+     * api request body
+     * 
+     * {
+     * 		"start_page":1,
+     * 		"size":2,
+     * 		"type_no":1,
+     * 		"user_no":2,
+     * 		"mode_type":"query_orders",
+     * 		"start_date":"2017-11-20 20:12:00",
+     * 		"end_date":"2017-12-14 20:12:00"
+     * }
+     * 
+     * @param requestParams
+     * @return
+     * @throws ParseException
+     */
     @PostMapping("/list")
     public Result list(@RequestBody Map<String,Object> requestParams) throws ParseException {
     	/** 获取分页信息 **/
@@ -59,7 +116,7 @@ public class LifeCostController {
     	Integer size = (requestParams.get("size") == null ? 0 : (int) requestParams.get("size"));   	
     	Integer typeNo = (Integer) requestParams.get("type_no");
     	Integer userNo = (Integer) requestParams.get("user_no");
-    	String modelType = (String) requestParams.get("model_type");
+    	String modeType = (String) requestParams.get("mode_type");
     	String startDateString = (String) requestParams.get("start_date");
     	String endDateString = (String) requestParams.get("end_date");
     	
@@ -67,7 +124,7 @@ public class LifeCostController {
     	Date endDate = DateFormatUtil.string2Date(endDateString, CommonConstant.DATE_PATTERN);
     	
         List<Object> list = lifeCostService.findLifeCostInfo(typeNo,
-        		userNo, modelType, startDate,endDate,startPage,size);
+        		userNo, modeType, startDate,endDate,startPage,size);
         return ResultGenerator.genSuccessResult(list);
     }
 }

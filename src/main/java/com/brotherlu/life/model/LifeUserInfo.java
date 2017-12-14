@@ -9,10 +9,13 @@ public class LifeUserInfo {
     @Column(name = "user_no")
     private Integer userNo;
 
+    @Column(name = "username")
     private String username;
 
+    @Column(name = "phone")
     private Integer phone;
 
+    @Column(name = "email")
     private String email;
 
     @Column(name = "entry_date")

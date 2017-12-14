@@ -16,7 +16,7 @@ public class LifeCost {
      * type_no
      */
     @Column(name = "cost_type")
-    private String costType;
+    private Integer costType;
 
     @Column(name = "cost_money")
     private Float costMoney;
@@ -78,7 +78,7 @@ public class LifeCost {
      *
      * @return cost_type - type_no
      */
-    public String getCostType() {
+    public Integer getCostType() {
         return costType;
     }
 
@@ -87,7 +87,7 @@ public class LifeCost {
      *
      * @param costType type_no
      */
-    public void setCostType(String costType) {
+    public void setCostType(Integer costType) {
         this.costType = costType;
     }
 
