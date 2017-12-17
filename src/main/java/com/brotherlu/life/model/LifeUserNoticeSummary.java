@@ -1,15 +1,13 @@
 package com.brotherlu.life.model;
 
-import java.math.BigDecimal;
-
-public class LifeTotalCost {
+public class LifeUserNoticeSummary {
 	private Integer userNo;
 	private String username;
-	private Integer groupNo;
-	private String groupName;
 	private Integer typeNo;
 	private String typeName;
-	private BigDecimal totalCost;
+	private Integer noticeNo;
+	private String noticeName;
+	private String noticeContent;
 	public Integer getUserNo() {
 		return userNo;
 	}
@@ -21,18 +19,6 @@ public class LifeTotalCost {
 	}
 	public void setUsername(String username) {
 		this.username = username;
-	}
-	public Integer getGroupNo() {
-		return groupNo;
-	}
-	public void setGroupNo(Integer groupNo) {
-		this.groupNo = groupNo;
-	}
-	public String getGroupName() {
-		return groupName;
-	}
-	public void setGroupName(String groupName) {
-		this.groupName = groupName;
 	}
 	public Integer getTypeNo() {
 		return typeNo;
@@ -46,11 +32,23 @@ public class LifeTotalCost {
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
 	}
-	public String getTotalCost() {
-		return totalCost.toString();
+	public Integer getNoticeNo() {
+		return noticeNo;
 	}
-	public void setTotalCost(BigDecimal totalCost) {
-		this.totalCost = totalCost;
+	public void setNoticeNo(Integer noticeNo) {
+		this.noticeNo = noticeNo;
+	}
+	public String getNoticeName() {
+		return noticeName;
+	}
+	public void setNoticeName(String noticeName) {
+		this.noticeName = noticeName;
+	}
+	public String getNoticeContent() {
+		return noticeContent;
+	}
+	public void setNoticeContent(String noticeContent) {
+		this.noticeContent = noticeContent;
 	}
 	
 }

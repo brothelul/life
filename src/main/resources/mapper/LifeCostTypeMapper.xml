@@ -10,4 +10,18 @@
     <result column="type_desc" jdbcType="VARCHAR" property="typeDesc" />
     <result column="group_no" jdbcType="INTEGER" property="groupNo" />
   </resultMap>
+  
+ 
+    <select id="findCostTypes" resultMap="BaseResultMap" statementType="CALLABLE">
+      <![CDATA[ {call life_query(
+			  #{typeNo,jdbcType=NUMERIC,mode=IN},
+			  #{userNo,jdbcType=NUMERIC,mode=IN},
+			  #{modeType,jdbcType=VARCHAR,mode=IN},
+			  #{startDate,jdbcType=DATE,mode=IN},
+			  #{endDate,jdbcType=DATE,mode=IN},
+			  #{page,jdbcType=NUMERIC,mode=IN},
+			  #{size,jdbcType=NUMERIC,mode=IN}
+			  )}
+	]]>  
+  </select>
 </mapper>

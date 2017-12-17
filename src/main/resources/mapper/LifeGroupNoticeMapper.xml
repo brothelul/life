@@ -13,4 +13,27 @@
     <result column="entry_date" jdbcType="TIMESTAMP" property="entryDate" />
     <result column="notice_content" jdbcType="LONGVARCHAR" property="noticeContent" />
   </resultMap>
+  
+  <resultMap type="com.brotherlu.life.model.LifeUserNoticeSummary" id="userNotices">
+  	<result column="user_no" property="userNo"/>
+  	<result column="username" property="username"/>
+  	<result column="type_no" property="typeNo"/>
+  	<result column="type_name" property="typeName"/>
+  	<result column="notice_no" property="noticeNo"/>
+  	<result column="notice_name" property="noticeName"/>
+  	<result column="notice_content" property="noticeContent"/>
+  </resultMap>
+  
+    <select id="getUserNotice" resultMap="userNotices" statementType="CALLABLE">
+      <![CDATA[ {call life_query(
+			  #{typeNo,jdbcType=NUMERIC,mode=IN},
+			  #{userNo,jdbcType=NUMERIC,mode=IN},
+			  #{modeType,jdbcType=VARCHAR,mode=IN},
+			  #{startDate,jdbcType=DATE,mode=IN},
+			  #{endDate,jdbcType=DATE,mode=IN},
+			  #{page,jdbcType=NUMERIC,mode=IN},
+			  #{size,jdbcType=NUMERIC,mode=IN}
+			  )}
+	]]>  
+  </select>
 </mapper>

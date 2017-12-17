@@ -1,4 +1,4 @@
-package com.brotherlu.life.faststart;
+/*package com.brotherlu.life.faststart;
 import com.brotherlu.life.framework.constants.ProjectConstant;
 import com.google.common.base.CaseFormat;
 
@@ -29,9 +29,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
+*//**
  * 代码生成器，根据数据表名称生成对应的Model、Mapper、Service、Controller简化开发。
- */
+ *//*
 public class CodeGenerator {
     //JDBC配置，请修改为你项目的实际配置
     private static final String JDBC_URL = "jdbc:mysql://localhost:3307/life";
@@ -58,23 +58,23 @@ public class CodeGenerator {
     	//genCode("life_cost","life_cost_clean","life_user_login","life_user_info","life_cost_type","life_group_notice","life_cost_clean","life_user_group");
     }
 
-    /**
+    *//**
      * 通过数据表名称生成代码，Model 名称通过解析数据表名称获得，下划线转大驼峰的形式。
      * 如输入表名称 "t_user_detail" 将生成 TUserDetail、TUserDetailMapper、TUserDetailService ...
      * @param tableNames 数据表名称...
-     */
+     *//*
     public static void genCode(String... tableNames) {
         for (String tableName : tableNames) {
             genCodeByCustomModelName(tableName, null);
         }
     }
 
-    /**
+    *//**
      * 通过数据表名称，和自定义的 Model 名称生成代码
      * 如输入表名称 "t_user_detail" 和自定义的 Model 名称 "User" 将生成 User、UserMapper、UserService ...
      * @param tableName 数据表名称
      * @param modelName 自定义的 Model 名称
-     */
+     *//*
     public static void genCodeByCustomModelName(String tableName, String modelName) {
         genModelAndMapper(tableName, modelName);
         genService(tableName, modelName);
@@ -239,3 +239,4 @@ public class CodeGenerator {
     }
 
 }
+*/

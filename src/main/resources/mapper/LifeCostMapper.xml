@@ -8,7 +8,7 @@
     <id column="cost_no" jdbcType="INTEGER" property="costNo" />
     <result column="user_no" jdbcType="INTEGER" property="userNo" />
     <result column="cost_type" jdbcType="INTEGER" property="costType" />
-    <result column="cost_money" jdbcType="REAL" property="costMoney" />
+    <result column="cost_money" jdbcType="DECIMAL" property="costMoney" />
     <result column="cost_date" jdbcType="TIMESTAMP" property="costDate" />
     <result column="cost_desc" jdbcType="VARCHAR" property="costDesc" />
     <result column="entry_id" jdbcType="INTEGER" property="entryId" />

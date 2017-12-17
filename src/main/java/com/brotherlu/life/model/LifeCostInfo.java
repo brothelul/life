@@ -1,13 +1,17 @@
 package com.brotherlu.life.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
+
+import com.brotherlu.life.framework.constants.CommonConstant;
+import com.brotherlu.life.utils.DateFormatUtil;
 
 public class LifeCostInfo {
 	private Integer costNo;
 	private Integer userNo;
 	private String username;
 	private Integer phone;
-	private Float costMoney;
+	private BigDecimal costMoney;
 	private String costDesc;
 	private Date costDate;
 	private Integer costType;
@@ -40,10 +44,10 @@ public class LifeCostInfo {
 	public void setPhone(Integer phone) {
 		this.phone = phone;
 	}
-	public Float getCostMoney() {
-		return costMoney;
+	public String getCostMoney() {
+		return costMoney.toString();
 	}
-	public void setCostMoney(Float costMoney) {
+	public void setCostMoney(BigDecimal costMoney) {
 		this.costMoney = costMoney;
 	}
 	public String getCostDesc() {
@@ -52,8 +56,9 @@ public class LifeCostInfo {
 	public void setCostDesc(String costDesc) {
 		this.costDesc = costDesc;
 	}
-	public Date getCostDate() {
-		return costDate;
+	public String getCostDate() {
+		
+		return DateFormatUtil.date2String(costDate, CommonConstant.DATE_PATTERN);
 	}
 	public void setCostDate(Date costDate) {
 		this.costDate = costDate;
@@ -88,8 +93,8 @@ public class LifeCostInfo {
 	public void setEntryId(Integer entryId) {
 		this.entryId = entryId;
 	}
-	public Date getEntryDate() {
-		return entryDate;
+	public String getEntryDate() {
+		return DateFormatUtil.date2String(entryDate, CommonConstant.DATE_PATTERN);
 	}
 	public void setEntryDate(Date entryDate) {
 		this.entryDate = entryDate;

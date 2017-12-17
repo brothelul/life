@@ -1,5 +1,6 @@
 package com.brotherlu.life.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -19,7 +20,7 @@ public class LifeCost {
     private Integer costType;
 
     @Column(name = "cost_money")
-    private Float costMoney;
+    private BigDecimal costMoney;
 
     @Column(name = "cost_date")
     private Date costDate;
@@ -94,14 +95,14 @@ public class LifeCost {
     /**
      * @return cost_money
      */
-    public Float getCostMoney() {
+    public BigDecimal getCostMoney() {
         return costMoney;
     }
 
     /**
      * @param costMoney
      */
-    public void setCostMoney(Float costMoney) {
+    public void setCostMoney(BigDecimal costMoney) {
         this.costMoney = costMoney;
     }
 

@@ -9,12 +9,13 @@ public class LifeGroupNotice {
     @Column(name = "notice_no")
     private Integer noticeNo;
 
-    @Column(name = "group_no")
-    private Integer groupNo;
+    @Column(name = "type_no")
+    private Integer typeNo;
 
     @Column(name = "notice_name")
     private String noticeName;
 
+    @Column(name = "active")
     private String active;
 
     @Column(name = "entry_id")
@@ -43,15 +44,15 @@ public class LifeGroupNotice {
     /**
      * @return group_no
      */
-    public Integer getGroupNo() {
-        return groupNo;
+    public Integer getTypeNo() {
+        return typeNo;
     }
 
     /**
      * @param groupNo
      */
-    public void setGroupNo(Integer groupNo) {
-        this.groupNo = groupNo;
+    public void setTypeNo(Integer typeNo) {
+        this.typeNo = typeNo;
     }
 
     /**

@@ -1,4 +1,5 @@
 package com.brotherlu.life.controller;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
@@ -37,7 +38,7 @@ public class LifeCostController {
      * {
      * 		"user_no":1,
      * 		"type_no":2,
-     * 		"cost_money":3.3,
+     * 		"cost_money":"3.3",
      * 		"cost_date":"2017-12-14 20:12:00",
      * 		"cost_desc":"买菜"
      * }
@@ -52,9 +53,11 @@ public class LifeCostController {
     	
     	Integer userNo = (Integer) requestParams.get("user_no");
     	Integer costType = (Integer) requestParams.get("type_no");
-    	Float costMoney = (Float) requestParams.get("cost_money");
     	String costDateString = (String) requestParams.get("cost_date");
     	String costDesc = (String) requestParams.get("cost_desc");
+    	
+		String costMoneyString = (String) requestParams.get("cost_money");
+		BigDecimal costMoney = new BigDecimal(costMoneyString);
     	
     	Date date = DateFormatUtil.string2Date(costDateString, CommonConstant.DATE_PATTERN);
     	if (userNo == null || costType == null || costMoney == null || date == null) {
@@ -67,6 +70,7 @@ public class LifeCostController {
     	lifeCost.setCostDesc(costDesc);
     	lifeCost.setUserNo(userNo);
     	lifeCost.setCostType(costType);
+    	lifeCost.setCostMoney(costMoney);
     	lifeCost.setEntryId(userNo);
     	lifeCost.setEntryDate(new Date());
     	
@@ -97,7 +101,7 @@ public class LifeCostController {
      * 
      * {
      * 		"start_page":1,
-     * 		"size":2,
+     * 		"page_size":2,
      * 		"type_no":1,
      * 		"user_no":2,
      * 		"mode_type":"query_orders",
@@ -113,8 +117,8 @@ public class LifeCostController {
     public Result list(@RequestBody Map<String,Object> requestParams) throws ParseException {
     	/** 获取分页信息 **/
     	Integer startPage = (requestParams.get("start_page") == null ? 0 : (int) requestParams.get("start_page"));
-    	Integer size = (requestParams.get("size") == null ? 0 : (int) requestParams.get("size"));   	
-    	Integer typeNo = (Integer) requestParams.get("type_no");
+    	Integer size = (requestParams.get("page_size") == null ? 0 : (int) requestParams.get("page_size"));   	
+    	Integer typeNo = (Integer) requestParams.get("type_no") == -1 ? null : (Integer) requestParams.get("type_no");
     	Integer userNo = (Integer) requestParams.get("user_no");
     	String modeType = (String) requestParams.get("mode_type");
     	String startDateString = (String) requestParams.get("start_date");
